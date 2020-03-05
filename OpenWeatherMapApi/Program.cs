@@ -27,6 +27,10 @@ namespace OpenWeatherMapApi
             string apiKey = token.ToString();
 
             string url = $"https://api.openweathermap.org/data/2.5/weather?zip={zip},{countryCode}&appid={apiKey}";
+
+            Task<string> response = httpClient.GetStringAsync(url);
+            string newResponse = response.Result;
+            JObject jObject1 = JObject.Parse(newResponse);
         }
     }
 }
