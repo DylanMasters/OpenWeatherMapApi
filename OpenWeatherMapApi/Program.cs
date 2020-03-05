@@ -31,6 +31,11 @@ namespace OpenWeatherMapApi
             Task<string> response = httpClient.GetStringAsync(url);
             string newResponse = response.Result;
             JObject jObject1 = JObject.Parse(newResponse);
+
+            var temp = jObject1["main"]["temp"].ToString();
+            var tempConversion = double.Parse(temp) * 9 / 5 - 459.67;
+            tempConversion = Math.Round(tempConversion, 1);
+            Console.WriteLine($"The temperature is {tempConversion}");
         }
     }
 }
